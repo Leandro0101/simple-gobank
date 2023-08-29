@@ -9,4 +9,7 @@ up:
 sqlc: 
 	sqlc generate
 
-.PHONY: migrate migratedown up sqlc
+test:
+	go test -v -cover ./...
+
+.PHONY: migrate migratedown up sqlc test
