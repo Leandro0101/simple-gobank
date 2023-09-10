@@ -4,7 +4,7 @@ migrate:
 migratedown: 
 	migrate -path=db/migration -database "postgres://root:toor123@localhost:5432/database?sslmode=disable" -verbose up
 up:
-	docker-compose up
+	docker-compose up -d
 
 sqlc: 
 	sqlc generate
