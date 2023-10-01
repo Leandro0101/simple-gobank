@@ -1,8 +1,15 @@
-migrate: 
+migrateup: 
 	migrate -path=db/migration -database "postgres://root:toor123@localhost:5432/database?sslmode=disable" -verbose up
 
+migrateup1: 
+	migrate -path=db/migration -database "postgres://root:toor123@localhost:5432/database?sslmode=disable" -verbose up 1
+
 migratedown: 
-	migrate -path=db/migration -database "postgres://root:toor123@localhost:5432/database?sslmode=disable" -verbose up
+	migrate -path=db/migration -database "postgres://root:toor123@localhost:5432/database?sslmode=disable" -verbose down
+
+migratedown1: 
+	migrate -path=db/migration -database "postgres://root:toor123@localhost:5432/database?sslmode=disable" -verbose down 1
+
 up:
 	docker-compose up -d
 
@@ -18,4 +25,4 @@ server:
 mock:
 	mockgen --package mockdb --destination db/mock/store.go simple-gobank/db/sqlc Store
 
-.PHONY: migrate migratedown up sqlc test server mock
+.PHONY: migrateup migratedown up sqlc test server mock migratedown1 migrateup1
