@@ -1,6 +1,7 @@
 package util
 
 import (
+	"fmt"
 	"math/rand"
 	"strings"
 )
@@ -8,7 +9,7 @@ import (
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 func RandomInt(min, max int64) int64 {
-	return min + rand.Int63n(max - min + 1)
+	return min + rand.Int63n(max-min+1)
 }
 
 func RandomString(n int) string {
@@ -16,7 +17,7 @@ func RandomString(n int) string {
 
 	alphabetLength := len(alphabet)
 
-	for i := 0; i < n; i ++ {
+	for i := 0; i < n; i++ {
 		c := alphabet[rand.Intn(alphabetLength)]
 		sb.WriteByte(c)
 	}
@@ -36,4 +37,8 @@ func RandomCurrency() string {
 	currencies := []string{EUR, USD, CAD}
 	n := len(currencies)
 	return currencies[rand.Intn(n)]
+}
+
+func RandomEmail() string {
+	return fmt.Sprintf("%s@gmail.com", RandomString(6))
 }
