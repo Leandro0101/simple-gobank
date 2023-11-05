@@ -72,3 +72,18 @@ func TestCreateUserAPI(t *testing.T) {
 	}, userRequest.Password)).Times(1)
 	server.router.ServeHTTP(recorder, request)
 }
+
+func randomUser(t *testing.T) db.User {
+	password := util.RandomString(6)
+	hashedPassword, err := util.HashPassword(password)
+	require.NoError(t, err)
+
+	user := db.User{
+		Username:       util.RandomOwner(),
+		HashedPassword: hashedPassword,
+		FullName:       util.RandomOwner(),
+		Email:          util.RandomEmail(),
+	}
+
+	return user
+}
